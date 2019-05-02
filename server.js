@@ -42,7 +42,7 @@ function main (req,res) {
                     }
                 });
             } else {
-                query = JSON.safeParse('{"' + decodeURI(query.replace(/&/g, "\",\"").replace(/=/g, "\":\"")) + '"}');
+                let query = JSON.safeParse('{"' + decodeURI(query.replace(/&/g, "\",\"").replace(/=/g, "\":\"")) + '"}');
                 if (query) {
                     if (query.batcontent) {
                         batcontent = query.batcontent;
