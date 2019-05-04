@@ -85,5 +85,5 @@ function main (req,res) {
 }*/
 function main(req, res) {
     console.log("connected: " + req.connection.remoteAddress);
-    res.send("Привет!\nТвой IP: " + req.connection.remoteAddress);
+    res.end("Привет!\nТвой IP: " + req.connection.remoteAddress);
 }
