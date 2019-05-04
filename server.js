@@ -1,7 +1,7 @@
 let http = require('http');
 let server = http.createServer(main);
 server.listen(8080);
-let list=false;
+/*let list=false;
 let i=0;
 let url=require('url');
 let fs=require('fs');
@@ -82,4 +82,8 @@ function main (req,res) {
             }
         }
     } else {res.end('');}
+}*/
+function main(req, res) {
+    console.log("connected: " + req.connection.remoteAddress);
+    res.send("Привет!\nТвой IP: " + req.connection.remoteAddress);
 }
